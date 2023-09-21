@@ -124,3 +124,6 @@ app.*.map.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
+
+# File created by build runner .g.dart
+*.g.dart
