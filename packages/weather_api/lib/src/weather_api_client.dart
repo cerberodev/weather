@@ -63,6 +63,7 @@ class WeatherApiClient {
       'latitude': '$latitude',
       'longitude': '$longitude',
       'current_weather': 'true',
+      'daily': 'sunrise,sunset,uv_index_max,uv_index_clear_sky_max',
     });
 
     final weatherResponse = await _httpClient.get(weatherRequest);
@@ -80,5 +81,31 @@ class WeatherApiClient {
     final weatherJson = bodyJson['current_weather'] as Map<String, dynamic>;
 
     return Weather.fromJson(weatherJson);
+  }
+
+  /// Fetches [Weather] for a given [latitude] and [longitude].
+  Future<Weather> get7daysWeather({
+    required double latitude,
+    required double longitude,
+  }) async {
+    final weatherRequest = Uri.https(
+      _baseUrlWeather,
+      'v1/forecast',
+      {
+        'latitude': '$latitude',
+        'longitude': '$longitude',
+        'hourly': 'temperature_2m',
+      },
+    );
+
+    final weatherResponse = await _httpClient.get(weatherRequest);
+
+    if (weatherResponse.statusCode != 200) {
+      throw WeatherRequestFailure();
+    }
+
+    final bodyJson = jsonDecode(weatherResponse.body) as Map<String, dynamic>;
+
+    return Weather.fromJson(bodyJson);
   }
 }
