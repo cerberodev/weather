@@ -6,6 +6,17 @@
 
 A Very Good Project created by Very Good CLI.
 
+## Run Build Runner
+
+**build_runner** should generate the **location.g.dart** and **weather.g.dart** files.
+
+
+```sh
+flutter packages pub run build_runner build
+```
+
+---
+
 ## Installation 💻
 
 **❗ In order to start using Weather Repository you must have the [Dart SDK][dart_install_link] installed on your machine.**
