@@ -5,3 +5,6 @@
 .packages
 build/
 pubspec.lock
+
+# Files created with build_runner .g
+*.g.dart
